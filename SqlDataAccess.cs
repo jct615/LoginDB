@@ -18,7 +18,7 @@ namespace LoginDB
             return ConfigurationManager.ConnectionStrings[name].ConnectionString;
         }
 
-        public static int CreateData<T>(string sql, T data)
+        public static int SaveData<T>(string sql, T data)
         {
             using (IDbConnection con = new SqlConnection(ConnectionString()))
             {

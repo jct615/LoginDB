@@ -19,7 +19,7 @@ namespace LoginDB
                 _Password = password,
             };
             string sql = @"INSERT INTO UsersTBL (Username, Passwords) values (@_Username, @_Password)";
-            return SqlDataAccess.CreateData(sql, data);
+            return SqlDataAccess.SaveData(sql, data);
         }
 
         public static int LoginUser(string username, string password)
@@ -41,6 +41,27 @@ namespace LoginDB
             };
             string sql = @"SELECT Username from UsersTBL WHERE Username = @_Username";
             return SqlDataAccess.SearchData(sql, data);
+        }
+
+        public static int UpdateUser(string username, string password)
+        {
+            User data = new User 
+            {
+                _Username = username,
+                _Password = password
+            };
+            string sql = @"UPDATE UsersTBL SET Username = @_Username and Passwords = @_Password";
+            return SqlDataAccess.SaveData(sql, data);
+        }
+
+        public static int DeleteUser(string username)
+        {
+            User data = new User
+            {
+                _Username = username
+            };
+            string sql = @"DELETE FROM UsersTBL WHERE Username = @_Username";
+            return SqlDataAccess.SaveData(sql, data);
         }
     }
 }
